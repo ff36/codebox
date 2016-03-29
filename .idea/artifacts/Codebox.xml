@@ -1,0 +1,28 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="Codebox">
+    <output-path>$PROJECT_DIR$/out/artifacts/Codebox</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="alias" value="" />
+        <option name="appClass" value="co.ff36.Main" />
+        <option name="description" value="" />
+        <option name="enabledSigning" value="true" />
+        <option name="height" value="800" />
+        <option name="htmlParamFile" value="" />
+        <option name="keystore" value="" />
+        <option name="nativeBundle" value="dmg" />
+        <option name="paramFile" value="" />
+        <option name="title" value="Codebox" />
+        <option name="vendor" value="555" />
+        <option name="width" value="1000" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JavaFXApp.jar">
+        <element id="module-output" name="codebox" />
+        <element id="library" level="project" name="com.amazonaws:aws-java-sdk:1.10.64" />
+        <element id="library" level="project" name="commons-io:commons-io:2.4" />
+      </element>
+    </root>
+  </artifact>
+</component>

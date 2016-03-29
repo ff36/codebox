@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JavaFXApp.jnlp">
+  <information>
+    <title>Codebox</title>
+    <vendor>555</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="JavaFXApp.jar" size="17780" download="eager" />
+    <jar href="aws-java-sdk-1.10.64.jar" size="2804" download="eager" />
+    <jar href="aws-java-sdk-acm-1.10.64.jar" size="117401" download="eager" />
+    <jar href="aws-java-sdk-api-gateway-1.10.64.jar" size="1007004" download="eager" />
+    <jar href="aws-java-sdk-autoscaling-1.10.64.jar" size="632534" download="eager" />
+    <jar href="aws-java-sdk-cloudformation-1.10.64.jar" size="306464" download="eager" />
+    <jar href="aws-java-sdk-cloudfront-1.10.64.jar" size="891652" download="eager" />
+    <jar href="aws-java-sdk-cloudhsm-1.10.64.jar" size="227538" download="eager" />
+    <jar href="aws-java-sdk-cloudsearch-1.10.64.jar" size="721042" download="eager" />
+    <jar href="aws-java-sdk-cloudtrail-1.10.64.jar" size="236111" download="eager" />
+    <jar href="aws-java-sdk-cloudwatch-1.10.64.jar" size="205179" download="eager" />
+    <jar href="aws-java-sdk-cloudwatchmetrics-1.10.64.jar" size="46573" download="eager" />
+    <jar href="aws-java-sdk-codecommit-1.10.64.jar" size="222684" download="eager" />
+    <jar href="aws-java-sdk-codedeploy-1.10.64.jar" size="572285" download="eager" />
+    <jar href="aws-java-sdk-codepipeline-1.10.64.jar" size="472999" download="eager" />
+    <jar href="aws-java-sdk-cognitoidentity-1.10.64.jar" size="239117" download="eager" />
+    <jar href="aws-java-sdk-cognitosync-1.10.64.jar" size="248154" download="eager" />
+    <jar href="aws-java-sdk-config-1.10.64.jar" size="455744" download="eager" />
+    <jar href="aws-java-sdk-core-1.10.64.jar" size="600252" download="eager" />
+    <jar href="aws-java-sdk-datapipeline-1.10.64.jar" size="309312" download="eager" />
+    <jar href="aws-java-sdk-devicefarm-1.10.64.jar" size="607098" download="eager" />
+    <jar href="aws-java-sdk-directconnect-1.10.64.jar" size="307800" download="eager" />
+    <jar href="aws-java-sdk-directory-1.10.64.jar" size="378141" download="eager" />
+    <jar href="aws-java-sdk-dms-1.10.64.jar" size="465915" download="eager" />
+    <jar href="aws-java-sdk-dynamodb-1.10.64.jar" size="1201099" download="eager" />
+    <jar href="aws-java-sdk-ec2-1.10.64.jar" size="3193646" download="eager" />
+    <jar href="aws-java-sdk-ecr-1.10.64.jar" size="239727" download="eager" />
+    <jar href="aws-java-sdk-ecs-1.10.64.jar" size="559498" download="eager" />
+    <jar href="aws-java-sdk-efs-1.10.64.jar" size="171247" download="eager" />
+    <jar href="aws-java-sdk-elasticache-1.10.64.jar" size="484161" download="eager" />
+    <jar href="aws-java-sdk-elasticbeanstalk-1.10.64.jar" size="610865" download="eager" />
+    <jar href="aws-java-sdk-elasticloadbalancing-1.10.64.jar" size="444788" download="eager" />
+    <jar href="aws-java-sdk-elasticsearch-1.10.64.jar" size="200966" download="eager" />
+    <jar href="aws-java-sdk-elastictranscoder-1.10.64.jar" size="532888" download="eager" />
+    <jar href="aws-java-sdk-emr-1.10.64.jar" size="585321" download="eager" />
+    <jar href="aws-java-sdk-events-1.10.64.jar" size="171519" download="eager" />
+    <jar href="aws-java-sdk-gamelift-1.10.64.jar" size="539313" download="eager" />
+    <jar href="aws-java-sdk-glacier-1.10.64.jar" size="365888" download="eager" />
+    <jar href="aws-java-sdk-iam-1.10.64.jar" size="1225725" download="eager" />
+    <jar href="aws-java-sdk-importexport-1.10.64.jar" size="126133" download="eager" />
+    <jar href="aws-java-sdk-inspector-1.10.64.jar" size="506659" download="eager" />
+    <jar href="aws-java-sdk-iot-1.10.64.jar" size="528546" download="eager" />
+    <jar href="aws-java-sdk-kinesis-1.10.64.jar" size="400723" download="eager" />
+    <jar href="aws-java-sdk-kms-1.10.64.jar" size="345497" download="eager" />
+    <jar href="aws-java-sdk-lambda-1.10.64.jar" size="331398" download="eager" />
+    <jar href="aws-java-sdk-logs-1.10.64.jar" size="331156" download="eager" />
+    <jar href="aws-java-sdk-machinelearning-1.10.64.jar" size="491326" download="eager" />
+    <jar href="aws-java-sdk-marketplacecommerceanalytics-1.10.64.jar" size="33595" download="eager" />
+    <jar href="aws-java-sdk-marketplacemeteringservice-1.10.64.jar" size="29727" download="eager" />
+    <jar href="aws-java-sdk-opsworks-1.10.64.jar" size="1032365" download="eager" />
+    <jar href="aws-java-sdk-rds-1.10.64.jar" size="927689" download="eager" />
+    <jar href="aws-java-sdk-redshift-1.10.64.jar" size="742169" download="eager" />
+    <jar href="aws-java-sdk-route53-1.10.64.jar" size="1043786" download="eager" />
+    <jar href="aws-java-sdk-s3-1.10.64.jar" size="614214" download="eager" />
+    <jar href="aws-java-sdk-ses-1.10.64.jar" size="561157" download="eager" />
+    <jar href="aws-java-sdk-simpledb-1.10.64.jar" size="130003" download="eager" />
+    <jar href="aws-java-sdk-simpleworkflow-1.10.64.jar" size="626046" download="eager" />
+    <jar href="aws-java-sdk-sns-1.10.64.jar" size="277569" download="eager" />
+    <jar href="aws-java-sdk-sqs-1.10.64.jar" size="320310" download="eager" />
+    <jar href="aws-java-sdk-ssm-1.10.64.jar" size="337593" download="eager" />
+    <jar href="aws-java-sdk-storagegateway-1.10.64.jar" size="674136" download="eager" />
+    <jar href="aws-java-sdk-sts-1.10.64.jar" size="151532" download="eager" />
+    <jar href="aws-java-sdk-support-1.10.64.jar" size="281984" download="eager" />
+    <jar href="aws-java-sdk-swf-libraries-1.10.64.jar" size="529879" download="eager" />
+    <jar href="aws-java-sdk-waf-1.10.64.jar" size="564564" download="eager" />
+    <jar href="aws-java-sdk-workspaces-1.10.64.jar" size="180082" download="eager" />
+    <jar href="commons-codec-1.6.jar" size="232771" download="eager" />
+    <jar href="commons-io-2.4.jar" size="185140" download="eager" />
+    <jar href="commons-logging-1.1.3.jar" size="62050" download="eager" />
+    <jar href="httpclient-4.3.6.jar" size="592008" download="eager" />
+    <jar href="httpcore-4.3.3.jar" size="282793" download="eager" />
+    <jar href="jackson-annotations-2.5.0.jar" size="39815" download="eager" />
+    <jar href="jackson-core-2.5.3.jar" size="229998" download="eager" />
+    <jar href="jackson-databind-2.5.3.jar" size="1143162" download="eager" />
+    <jar href="joda-time-2.8.1.jar" size="621931" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <applet-desc  width="1000" height="800" main-class="com.javafx.main.NoJavaFXFallback"  name="Codebox" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="1000" height="800" main-class="co.ff36.Main"  name="Codebox" />
+  <update check="background"/>
+</jnlp>
