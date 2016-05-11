@@ -25,8 +25,11 @@ public class S3Util {
     private BasicAWSCredentials awsCreds;
     private static String bucketName;
 
+    /**
+     * Construct a new S3Util object to perform AWS S3 based functions.
+     * @throws IOException
+     */
     public S3Util() throws IOException {
-
         String accessKey = null, secretKey = null;
         File file = new File(System.getProperty("user.home") + "/Documents/codebox/settings");
         List<String> contents = FileUtils.readLines(file);
@@ -45,6 +48,8 @@ public class S3Util {
      * Upload an archive
      * @param uploadFileName The file to upload
      * @param keyName The name of the file to save it to S3
+     *
+     * TODO This needs to be multi-threaded and needs progress bar
      */
     public void Upload(String uploadFileName, String keyName) {
 
@@ -124,6 +129,7 @@ public class S3Util {
             S3Object s3object = s3Client.getObject(new GetObjectRequest(bucketName, key));
             S3ObjectInputStream inputStream = s3object.getObjectContent();
 
+            // TODO this doesn't work from French OS!
             String home = System.getProperty("user.home");
             File file = new File(home + "/Downloads/" + key);
 

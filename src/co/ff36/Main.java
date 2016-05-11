@@ -40,9 +40,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         // Setup the main canvas
-        primaryStage.setTitle("Archiver");
+        primaryStage.setTitle("Presstexte Archiver");
         Group root = new Group();
-        Scene scene = new Scene(root, 1000, 800);
+        Scene scene = new Scene(root, 1200, 800);
 
         // Create a tab pane for both tabs to be added
         TabPane tabPane = new TabPane();
@@ -73,6 +73,10 @@ public class Main extends Application {
         orderTextField.setPromptText("Order Number (required)");
         formGrid.add(orderTextField, 0, 3);
 
+        TextField extraTextField = new TextField();
+        extraTextField.setPromptText("Extra (max 50 characters)");
+        formGrid.add(extraTextField, 0, 4);
+
         final Text actionTarget = new Text();
         formGrid.add(actionTarget, 0, 6);
 
@@ -89,14 +93,17 @@ public class Main extends Application {
         // Create a table view for the search
         TableView<Archive> table = new TableView<>();
         TableColumn companyCol = new TableColumn("Company Name");
-        companyCol.setMinWidth(300);
+        companyCol.setMinWidth(200);
         companyCol.setCellValueFactory(new PropertyValueFactory<Archive, String>("companyName"));
         TableColumn accountCol = new TableColumn("Account Name");
-        accountCol.setMinWidth(300);
+        accountCol.setMinWidth(200);
         accountCol.setCellValueFactory(new PropertyValueFactory<Archive, String>("accountName"));
         TableColumn orderCol = new TableColumn("Order Number");
-        orderCol.setMinWidth(100);
+        orderCol.setMinWidth(110);
         orderCol.setCellValueFactory(new PropertyValueFactory<Archive, String>("orderNumber"));
+        TableColumn extraCol = new TableColumn("Extra");
+        extraCol.setMinWidth(300);
+        extraCol.setCellValueFactory(new PropertyValueFactory<Archive, String>("extra"));
         TableColumn dateCol = new TableColumn("Date");
         dateCol.setCellValueFactory(new PropertyValueFactory<Archive, String>("archivedDate"));
         TableColumn sizeCol = new TableColumn("Size");
@@ -121,7 +128,7 @@ public class Main extends Application {
         // Wrap the filtered list into a sorted list and add it to the table
         GridPane searchGrid = new GridPane();
         table.setItems(createTable(searchGrid));
-        table.getColumns().addAll(companyCol, accountCol, orderCol, dateCol, sizeCol);
+        table.getColumns().addAll(companyCol, accountCol, orderCol, extraCol, dateCol, sizeCol);
         table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         table.setPrefHeight(740);
 
@@ -182,6 +189,7 @@ public class Main extends Application {
                                 companyTextField.setDisable(true);
                                 accountTextField.setDisable(true);
                                 orderTextField.setDisable(true);
+                                extraTextField.setDisable(true);
 
                                 actionTarget.setFill(Color.GREEN);
                                 actionTarget.setText("Archiving...");
@@ -193,7 +201,11 @@ public class Main extends Application {
                                             String tempDir = System.getProperty("java.io.tmpdir");
                                             ZipUtil.zipFolder(srcPath, tempDir + ".zip");
 
-                                            String uploadName = Archive.toKey(companyTextField.getText(), accountTextField.getText(), orderTextField.getText());
+                                            String uploadName = Archive.toKey(
+                                                    companyTextField.getText(),
+                                                    accountTextField.getText(),
+                                                    orderTextField.getText(),
+                                                    extraTextField.getText());
 
                                             new S3Util().Upload(tempDir + ".zip",  uploadName );
 
@@ -212,9 +224,11 @@ public class Main extends Application {
                                     companyTextField.clear();
                                     accountTextField.clear();
                                     orderTextField.clear();
+                                    extraTextField.clear();
                                     companyTextField.setDisable(false);
                                     accountTextField.setDisable(false);
                                     orderTextField.setDisable(false);
+                                    extraTextField.setDisable(false);
 
                                     actionTarget.setText(null);
 
@@ -254,7 +268,7 @@ public class Main extends Application {
         FilteredList<Archive> filteredData = new FilteredList<>(new S3Util().list(), p -> true);
 
         TextField filterField = new TextField();
-        filterField.setMinWidth(1000);
+        filterField.setMinWidth(1200);
         filterField.setPromptText("Search");
         searchGrid.add(filterField, 0, 1);
 
