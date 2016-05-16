@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane minHeight="0.0"
+            minWidth="0.0"
+            prefHeight="160.0"
+            prefWidth="100.0"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.ff36.controller.AboutController">
+    <children>
+        <VBox layoutX="266.0" layoutY="94.0" prefHeight="228.0" prefWidth="307.0">
+            <children>
+                <Label fx:id="author" GridPane.columnIndex="0" GridPane.rowIndex="0" text="%author">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="version" GridPane.columnIndex="0" GridPane.rowIndex="0" text="%version">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Label>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

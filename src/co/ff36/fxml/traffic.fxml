@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="0.0"
+            minWidth="0.0"
+            prefHeight="100.0"
+            prefWidth="160.0"
+            styleClass="traffic-bg"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.ff36.controller.TrafficController">
+        <children>
+            <TableView fx:id="table"
+                       styleClass="traffic-table"
+                       AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0"
+                       AnchorPane.rightAnchor="0.0"
+                       AnchorPane.topAnchor="0.0">
+                <contextMenu>
+                    <ContextMenu>
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="%context_reload" onAction="#load"/>
+                            <MenuItem mnemonicParsing="false" text="%context_stop" onAction="#stop"/>
+                            <MenuItem mnemonicParsing="false" text="%context_clear" onAction="#clear"/>
+                            <MenuItem mnemonicParsing="false" text="%context_clear_done" onAction="#clearDone"/>
+                        </items>
+                    </ContextMenu>
+                </contextMenu>
+                <placeholder>
+                    <Label text="%empty_traffic_table"/>
+                </placeholder>
+            </TableView>
+        </children>
+</AnchorPane>

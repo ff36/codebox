@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane minHeight="0.0"
+            minWidth="0.0"
+            prefHeight="160.0"
+            prefWidth="100.0"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.ff36.controller.RemoteController">
+    <children>
+        <TextField fx:id="search"
+                   layoutX="14.0"
+                   layoutY="14.0"
+                   prefHeight="27.0"
+                   prefWidth="100.0"
+                   promptText="%search_prompt"
+                   AnchorPane.leftAnchor="15.0"
+                   AnchorPane.rightAnchor="15.0"
+                   AnchorPane.topAnchor="15.0" />
+        <TableView fx:id="table"
+                   layoutX="15.0"
+                   layoutY="54.0"
+                   prefWidth="100.0"
+                   AnchorPane.bottomAnchor="15.0"
+                   AnchorPane.leftAnchor="15.0"
+                   AnchorPane.rightAnchor="15.0"
+                   AnchorPane.topAnchor="60.0">
+            <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="%context_download" onAction="#remoteFileSelected"/>
+                        <MenuItem mnemonicParsing="false" text="%context_reload" onAction="#load"/>
+                    </items>
+                </ContextMenu>
+            </contextMenu>
+            <placeholder>
+                <Label text="%empty_remote_table"/>
+            </placeholder>
+        </TableView>
+    </children>
+</AnchorPane>
