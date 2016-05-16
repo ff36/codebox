@@ -1,4 +1,4 @@
-package co.ff36.archive;
+package co.ff36.pojo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
