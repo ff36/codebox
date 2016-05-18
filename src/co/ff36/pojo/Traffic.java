@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * A object representation of a traffic event i.e. Upload, Download
+ *
  * Created by tarka on 15/05/2016.
  */
 public class Traffic extends Task<Void> {
@@ -71,6 +73,9 @@ public class Traffic extends Task<Void> {
         return timestamp;
     }
 
+    /**
+     * Common initialization method
+     */
     private void init() {
         this.id = UUID.randomUUID();
         this.status = State.Current;
@@ -78,12 +83,44 @@ public class Traffic extends Task<Void> {
         this.timestamp = new SimpleStringProperty(time);
     }
 
+    /**
+     * Abort function.
+     */
     public void abort() {
         this.status = State.Fail;
         this.aborted = true;
         this.updateMessage(State.Fail.toString());
     }
 
+    /**
+     * Determine if the traffic task is complete
+     * @return True if it is complete otherwise false.
+     */
+    public boolean isDone() {
+        switch (type) {
+            case Upload: return upload.isDone();
+            case Download: return download.isDone();
+            default: return false;
+        }
+    }
+
+    /**
+     * Get a description of the traffic event.
+     * @return A string description of the event.
+     */
+    public String getDescription() {
+        switch (type) {
+            case Upload: return upload.getDescription();
+            case Download: return download.getDescription();
+            default: return null;
+        }
+    }
+
+    /**
+     * Traffic extends Task and as such is runnable. This is the execution method called when the object is invoked.
+     * @return Void
+     * @throws Exception
+     */
     @Override
     protected Void call() throws Exception {
         this.updateProgress(ProgressIndicator.INDETERMINATE_PROGRESS, 1);
@@ -111,21 +148,5 @@ public class Traffic extends Task<Void> {
         }
 
         return null;
-    }
-
-    public boolean isDone() {
-        switch (type) {
-            case Upload: return upload.isDone();
-            case Download: return download.isDone();
-            default: return false;
-        }
-    }
-
-    public String getFile() {
-        switch (type) {
-            case Upload: return upload.getDescription();
-            case Download: return download.getDescription();
-            default: return null;
-        }
     }
 }

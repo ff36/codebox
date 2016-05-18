@@ -18,13 +18,9 @@ public class AboutController implements Initializable {
     private Label author;
     @FXML
     private Label version;
-    @FXML
-    private TextField awsPublicKey;
-    @FXML
-    private PasswordField awsPrivateKey;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        author.setText(resources.getString("author"));
+
     }
 }

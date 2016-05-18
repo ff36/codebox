@@ -9,6 +9,7 @@ import java.util.Date;
  *
  * Created by tarka on 28/03/2016.
  */
+@SuppressWarnings("unused")
 public class Archive {
 
     private static final String DATE_FORMAT = "MM-dd-yyyy";
@@ -87,7 +88,7 @@ public class Archive {
     }
 
     public void setExtra(String extra) {
-        this.extra = extra.substring(0, Math.min(extra.length(), 50));;
+        this.extra = extra.substring(0, Math.min(extra.length(), 50));
     }
 
     /**

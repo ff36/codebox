@@ -22,6 +22,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * Class dedicated to handling all functions relating to the traffic table pane of the application.
+ *
  * Created by tarka on 13/05/2016.
  */
 public class TrafficController implements Initializable {
@@ -29,11 +31,20 @@ public class TrafficController implements Initializable {
     @FXML
     private TableView<Traffic> table;
 
+    /**
+     * Automatically invoked whenever the local pane is initialized. This happens after the constructor.
+     * @param location The URL of the invoking FXML file
+     * @param resources The resource bundle being used.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         load();
     }
 
+    /**
+     * This is fundamentally the initialize method used to prepare the traffic table. It has been moved to a separate
+     * method so that it can be called as part of a reload function.
+     */
     @SuppressWarnings("unchecked")
     public void load() {
 
@@ -77,7 +88,7 @@ public class TrafficController implements Initializable {
 
         TableColumn<Traffic, String> fileCol = new TableColumn();
         fileCol.setPrefWidth(900.0);
-        fileCol.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getFile()));
+        fileCol.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDescription()));
 
         TableColumn<Traffic, Double> progressCol = new TableColumn();
         progressCol.setPrefWidth(300.0);
@@ -130,6 +141,11 @@ public class TrafficController implements Initializable {
         table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
+    /**
+     * Stops a traffic activity.
+     *
+     * @throws IOException
+     */
     @FXML
     protected void stop() throws IOException {
         Traffic selectedItem = table.getSelectionModel().getSelectedItem();
@@ -143,6 +159,9 @@ public class TrafficController implements Initializable {
         }
     }
 
+    /**
+     * Clears a traffic activity from the list.
+     */
     @FXML
     protected void clear() {
         Traffic selectedItem = table.getSelectionModel().getSelectedItem();
@@ -150,6 +169,9 @@ public class TrafficController implements Initializable {
         load();
     }
 
+    /**
+     * Clears all completed traffic activities from the list
+     */
     @FXML
     protected void clearDone() {
         TrafficTasks.getInstance().deleteDoneTraffic();

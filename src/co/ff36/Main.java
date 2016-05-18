@@ -9,8 +9,16 @@ import javafx.stage.Stage;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * The Application main entry class
+ */
 public class Main extends Application {
 
+    /**
+     * JavaFx main entry point
+     * @param primaryStage Auto set
+     * @throws Exception Standard
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         ResourceBundle bundle = ResourceBundle.getBundle("cb-local", Locale.getDefault());
@@ -23,6 +31,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Main entry method
+     * @param args Standard JVM app args
+     */
     public static void main(String[] args) {
         launch(args);
     }

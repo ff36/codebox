@@ -25,7 +25,7 @@
             <contextMenu>
                 <ContextMenu>
                     <items>
-                        <MenuItem mnemonicParsing="false" text="%context_archive" onAction="#localFileSelected"/>
+                        <MenuItem mnemonicParsing="false" text="%context_archive" onAction="#localDirectorySelected"/>
                         <MenuItem mnemonicParsing="false" text="%context_reload" onAction="#load"/>
                     </items>
                 </ContextMenu>

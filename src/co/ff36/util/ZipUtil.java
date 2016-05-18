@@ -21,8 +21,8 @@ public class ZipUtil {
      * @throws Exception
      */
     static public void zipFolder(String srcFolder, String destZipFile) throws Exception {
-        ZipOutputStream zip = null;
-        FileOutputStream fileWriter = null;
+        ZipOutputStream zip;
+        FileOutputStream fileWriter;
 
         fileWriter = new FileOutputStream(destZipFile);
         zip = new ZipOutputStream(fileWriter);
@@ -58,7 +58,7 @@ public class ZipUtil {
     /**
      * Recursively add folder inside a directory to the parent zip file
      * @param path The path to the inner file
-     * @param srcFolder The path to the original source foulder
+     * @param srcFolder The path to the original source folder
      * @param zip The zip file to add the resource file to.
      * @throws Exception
      */

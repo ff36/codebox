@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.*;
 
 /**
+ * Class dedicated to handling all functions relating to the setting window of the application.
+ *
  * Created by tarka on 15/05/2016.
  */
 public class SettingController implements Initializable {
@@ -25,6 +27,11 @@ public class SettingController implements Initializable {
     @FXML
     private TextField downloadFile;
 
+    /**
+     * Automatically invoked whenever the remote pane is initialized. This happens after the constructor.
+     * @param location The URL of the invoking FXML file
+     * @param resources The resource bundle being used.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -37,6 +44,12 @@ public class SettingController implements Initializable {
         downloadFile.setText(settings.get(SettingUtil.DOWNLOAD_FILE_KEY));
     }
 
+    /**
+     * Save the settings in the form.
+     *
+     * @param actionEvent The event used to identify the modal windows owner.
+     */
+    @FXML
     public void saveSetting(ActionEvent actionEvent) {
 
         SettingUtil settingUtil = new SettingUtil();

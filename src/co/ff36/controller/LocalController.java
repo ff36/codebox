@@ -21,6 +21,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
+ * Class dedicated to handling all functions relating to the local table pane of the application.
+ *
  * Created by tarka on 11/05/2016.
  */
 public class LocalController implements Initializable {
@@ -28,13 +30,22 @@ public class LocalController implements Initializable {
     @FXML
     private TreeView<File> tree;
 
+    /**
+     * Automatically invoked whenever the local pane is initialized. This happens after the constructor.
+     * @param location The URL of the invoking FXML file
+     * @param resources The resource bundle being used.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         load();
     }
 
+    /**
+     * This is fundamentally the initialize method used to prepare the local tree. It has been moved to a separate
+     * method so that it can be called as part of a reload function.
+     */
     public void load() {
-        // Dynamic
+
         TreeView<File> view = new TreeView<>(new FileTree(new File(System.getProperty("user.home"))));
         TreeItem<File> root = view.getRoot();
         root.setExpanded(true);
@@ -53,8 +64,14 @@ public class LocalController implements Initializable {
         });
     }
 
+    /**
+     * A local directory has been selected to be archived. This method invokes the archive modal and passes the respective
+     * information to it.
+     * @param actionEvent The event used to set the new modal windows owner.
+     * @throws IOException
+     */
     @FXML
-    protected void localFileSelected(ActionEvent actionEvent) throws IOException {
+    protected void localDirectorySelected(ActionEvent actionEvent) throws IOException {
         TreeItem<File> selectedItem = tree.getSelectionModel().getSelectedItem();
         if (selectedItem.getValue().isDirectory()) {
             Stage stage = new Stage();

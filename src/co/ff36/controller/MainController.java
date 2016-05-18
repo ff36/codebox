@@ -19,6 +19,12 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Class dedicated to handling all functions relating to the main container pane of the application.
+ *
+ * Created by tarka on 11/05/2016.
+ */
+@SuppressWarnings("unused")
 public class MainController implements Initializable {
 
     @FXML
@@ -28,6 +34,11 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem setting;
 
+    /**
+     * Automatically invoked whenever the main container pane is initialized. This happens after the constructor.
+     * @param location The URL of the invoking FXML file
+     * @param resources The resource bundle being used.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         quit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN));
@@ -35,6 +46,11 @@ public class MainController implements Initializable {
         setting.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN));
     }
 
+    /**
+     * Main menu function to handle displaying the About window.
+     * @param actionEvent The event used to set the new modal windows owner.
+     * @throws IOException
+     */
     @FXML
     protected void displayAboutWindow(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
@@ -49,6 +65,11 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Main menu function to handle displaying the Setting window.
+     * @param actionEvent The event used to set the new modal windows owner.
+     * @throws IOException
+     */
     @FXML
     protected void displaySettingWindow(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
@@ -63,6 +84,11 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Main menu function to handle quiting the application.
+     * @param actionEvent The event used to set the new modal windows owner.
+     * @throws IOException
+     */
     @FXML
     protected void quitApp(ActionEvent actionEvent) throws IOException {
         Platform.exit();

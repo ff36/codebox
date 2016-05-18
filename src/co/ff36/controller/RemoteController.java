@@ -4,29 +4,26 @@ import co.ff36.pojo.Archive;
 import co.ff36.pojo.Traffic;
 import co.ff36.pojo.TrafficTasks;
 import co.ff36.util.S3Util;
-import co.ff36.util.ZipUtil;
 import com.amazonaws.services.s3.transfer.Download;
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import org.apache.commons.io.FileUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
+ * Class dedicated to handling all functions relating to the remote table pane of the application.
+ *
  * Created by tarka on 11/05/2016.
  */
 public class RemoteController implements Initializable {
@@ -36,38 +33,20 @@ public class RemoteController implements Initializable {
     @FXML
     private TableView<Archive> table;
 
-
-
+    /**
+     * Automatically invoked whenever the remote pane is initialized. This happens after the constructor.
+     * @param location The URL of the invoking FXML file
+     * @param resources The resource bundle being used.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         load();
     }
 
-    @FXML
-    protected void remoteFileSelected(ActionEvent actionEvent) throws IOException {
-        Archive selectedItem = table.getSelectionModel().getSelectedItem();
-
-        Task<Void> task = new Task<Void>() {
-            @Override
-            public Void call() throws InterruptedException {
-
-                try {
-                    Download download = new S3Util().download(selectedItem.getKey());
-                    Traffic traffic = new Traffic(Traffic.Type.Download, download);
-                    TrafficTasks tasks = TrafficTasks.getInstance();
-                    tasks.addTraffic(traffic);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        };
-
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-    }
-
+    /**
+     * This is fundamentally the initialize method used to prepare the remote table. It has been moved to a separate
+     * method so that it can be called as part of a reload function.
+     */
     @SuppressWarnings("unchecked")
     public void load() {
 
@@ -97,16 +76,19 @@ public class RemoteController implements Initializable {
         sizeCol.setCellValueFactory(new PropertyValueFactory<Archive, String>("size"));
 
         // Wrap the filtered list into a sorted list and add it to the table
-        GridPane searchGrid = new GridPane();
         table.getItems().clear();
-        table.setItems(createTable(searchGrid));
+        table.setItems(createTable());
         if (table.getColumns().isEmpty()) {
             table.getColumns().addAll(companyCol, accountCol, orderCol, extraCol, dateCol, sizeCol);
         }
         table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
-    private FilteredList<Archive> createTable(GridPane searchGrid) {
+    /**
+     * Get the data from S3 metadata and filter it.
+     * @return A collection of filtered metadata values from S3
+     */
+    private FilteredList<Archive> createTable() {
         // Wrap the ObservableList in a FilteredList (initially display all data).
         try {
             FilteredList<Archive> filteredData = new FilteredList<>(new S3Util().list(), p -> true);
@@ -134,9 +116,41 @@ public class RemoteController implements Initializable {
             });
 
             return filteredData;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+
+        return new FilteredList<>(FXCollections.observableArrayList());
+    }
+
+    /**
+     * A remote file has been selected for download. This method adds a task to a new thread so the download can happen
+     * asynchronously. The threaded task is then added to a collection of tasks to be monitored and managed by the traffic
+     * manager.
+     * @throws IOException
+     */
+    @FXML
+    protected void remoteFileSelected() throws IOException {
+        Archive selectedItem = table.getSelectionModel().getSelectedItem();
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+
+                try {
+                    Download download = new S3Util().download(selectedItem.getKey());
+                    Traffic traffic = new Traffic(Traffic.Type.Download, download);
+                    TrafficTasks tasks = TrafficTasks.getInstance();
+                    tasks.addTraffic(traffic);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 }
