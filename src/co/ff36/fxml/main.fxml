@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane fx:controller="co.ff36.controller.MainController"
+            id="BorderPane"
+            maxHeight="-Infinity"
+            maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="400.0"
+            prefWidth="400.0"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/8">
+    <bottom>
+        <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%version" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="10.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets right="10.0" />
+            </BorderPane.margin>
+        </Label>
+    </bottom>
+    <top>
+        <VBox prefHeight="-1.0" prefWidth="-1.0">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="%menu_file_title">
+                            <items>
+                                <MenuItem fx:id="quit" onAction="#quitApp" mnemonicParsing="false" text="%menu_quit_title" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%menu_help_title">
+                            <items>
+                                <MenuItem fx:id="about" onAction="#displayAboutWindow" mnemonicParsing="false" text="%menu_about_title" />
+                            </items>
+                            <items>
+                                <MenuItem fx:id="setting" onAction="#displaySettingWindow" mnemonicParsing="false" text="%menu_setting_title" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.8" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+            <items>
+                <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
+                    <items>
+                        <fx:include source="local.fxml"/>
+                        <fx:include source="remote.fxml"/>
+                    </items>
+                </SplitPane>
+                <fx:include source="traffic.fxml"/>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>

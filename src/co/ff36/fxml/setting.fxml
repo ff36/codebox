@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane minHeight="0.0"
+            minWidth="0.0"
+            prefHeight="160.0"
+            prefWidth="100.0"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.ff36.controller.SettingController">
+    <children>
+        <VBox layoutX="266.0" layoutY="94.0" prefHeight="228.0" prefWidth="307.0">
+            <children>
+                <TextField fx:id="awsBucket" promptText="%aws_bucket">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField fx:id="awsPublicKey" promptText="%aws_public_key">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </TextField>
+                <PasswordField fx:id="awsPrivateKey" promptText="%aws_private_key">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </PasswordField>
+                <TextField fx:id="downloadFile" promptText="%download_file">
+                    <VBox.margin>
+                        <Insets top="40.0" />
+                    </VBox.margin>
+                </TextField>
+                <Button onAction="#saveSetting" text="%save_setting_button">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

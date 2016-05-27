@@ -1,20 +1,22 @@
 package co.ff36.util;
 
-import co.ff36.archive.Archive;
+import co.ff36.pojo.Archive;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.transfer.Download;
+import com.amazonaws.services.s3.transfer.TransferManager;
+import com.amazonaws.services.s3.transfer.Upload;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Amazon S3 utility class to upload list and download archives
@@ -25,17 +27,18 @@ public class S3Util {
     private BasicAWSCredentials awsCreds;
     private static String bucketName;
 
+    /**
+     * Construct a new S3Util object to perform AWS S3 based functions.
+     * @throws IOException
+     */
     public S3Util() throws IOException {
+        String accessKey, secretKey;
 
-        String accessKey = null, secretKey = null;
-        File file = new File(System.getProperty("user.home") + "/Documents/codebox/settings");
-        List<String> contents = FileUtils.readLines(file);
-        for (String line : contents) {
-            String[] split = line.split("=");
-            if (split[0].equals("aws_bucket")) bucketName = split[1];
-            if (split[0].equals("aws_key")) accessKey = split[1];
-            if (split[0].equals("aws_secret")) secretKey = split[1];
-        }
+        Map<String, String> settings = new SettingUtil().load();
+        accessKey = settings.get(SettingUtil.AWS_PUBLIC_KEY);
+        secretKey = settings.get(SettingUtil.AWS_PRIVATE_KEY);
+        bucketName = settings.get(SettingUtil.AWS_BUCKET_KEY);
+
         assert accessKey != null;
         assert secretKey != null;
         awsCreds = new BasicAWSCredentials(accessKey, secretKey);
@@ -45,14 +48,20 @@ public class S3Util {
      * Upload an archive
      * @param uploadFileName The file to upload
      * @param keyName The name of the file to save it to S3
+     *
      */
-    public void Upload(String uploadFileName, String keyName) {
+    @SuppressWarnings("deprecation")
+    public Upload Upload(String uploadFileName, String keyName) {
 
-        AmazonS3 s3client = new AmazonS3Client(awsCreds);
+        AmazonS3 s3Client = new AmazonS3Client(awsCreds);
+        s3Client.setEndpoint("https://s3.eu-central-1.amazonaws.com");
+        TransferManager tm = new TransferManager(s3Client);
         try {
-            System.out.println("Uploading a new object to S3 from a file\n");
             File file = new File(uploadFileName);
-            s3client.putObject(new PutObjectRequest(bucketName, keyName, file));
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, keyName, file);
+            putObjectRequest.setProgressListener(event -> {});
+
+            return tm.upload(putObjectRequest);
 
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which " +
@@ -72,6 +81,7 @@ public class S3Util {
                     "such as not being able to access the network.");
             System.out.println("Error Message: " + ace.getMessage());
         }
+        return null;
     }
 
     /**
@@ -80,12 +90,13 @@ public class S3Util {
      */
     public ObservableList<Archive> list() {
         ObservableList<Archive> result = FXCollections.observableArrayList();
-        AmazonS3 s3client = new AmazonS3Client(awsCreds);
+        AmazonS3 s3Client = new AmazonS3Client(awsCreds);
+        s3Client.setEndpoint("https://s3.eu-central-1.amazonaws.com");
         try {
             ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucketName);
             ObjectListing objectListing;
             do {
-                objectListing = s3client.listObjects(listObjectsRequest);
+                objectListing = s3Client.listObjects(listObjectsRequest);
                 for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
                     result.add(new Archive(objectSummary.getKey(), objectSummary.getSize()));
                 }
@@ -118,16 +129,21 @@ public class S3Util {
      * Download an object form S3
      * @param key The key name of the file to download.
      */
-    public void download(String key) {
+    @SuppressWarnings("deprecation")
+    public Download download(String key) {
         AmazonS3 s3Client = new AmazonS3Client(awsCreds);
+        s3Client.setEndpoint("https://s3.eu-central-1.amazonaws.com");
+        TransferManager tm = new TransferManager(s3Client);
         try {
-            S3Object s3object = s3Client.getObject(new GetObjectRequest(bucketName, key));
-            S3ObjectInputStream inputStream = s3object.getObjectContent();
 
-            String home = System.getProperty("user.home");
-            File file = new File(home + "/Downloads/" + key);
+            Map<String, String> settings = new SettingUtil().load();
+            String download = settings.get(SettingUtil.DOWNLOAD_FILE_KEY);
+            File file = new File(download + "/" + key);
 
-            FileUtils.copyInputStreamToFile(inputStream, file);
+            GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, key);
+            getObjectRequest.setProgressListener(event -> {});
+
+            return tm.download(getObjectRequest, file);
 
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which" +
@@ -146,9 +162,8 @@ public class S3Util {
                     "communicate with S3, " +
                     "such as not being able to access the network.");
             System.out.println("Error Message: " + ace.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return null;
     }
 
 }
