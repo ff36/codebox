@@ -11,5 +11,5 @@ buildNumber.properties
 
 out/
 lib/
-.idea/**
+.idea/
 *.iml

@@ -1,5 +1,6 @@
 package co.ff36.controller;
 
+import co.ff36.Main;
 import co.ff36.pojo.Traffic;
 import co.ff36.pojo.TrafficTasks;
 import javafx.beans.property.SimpleObjectProperty;
@@ -64,9 +65,9 @@ public class TrafficController implements Initializable {
 
                             Image img = null;
                             switch(item) {
-                                case Upload: img = new Image(getClass().getResource("../img/upload.png").toExternalForm());
+                                case Upload: img = new Image(Main.class.getResource("img/upload.png").toExternalForm());
                                     break;
-                                case Download: img = new Image(getClass().getResource("../img/download.png").toExternalForm());
+                                case Download: img = new Image(Main.class.getResource("img/download.png").toExternalForm());
                                     break;
                             }
 
@@ -111,11 +112,11 @@ public class TrafficController implements Initializable {
 
                             Image img = null;
                             switch(item) {
-                                case "Current": img = new Image(getClass().getResource("../img/progress.png").toExternalForm());
+                                case "Current": img = new Image(Main.class.getResource("img/progress.png").toExternalForm());
                                     break;
-                                case "Success": img = new Image(getClass().getResource("../img/success.png").toExternalForm());
+                                case "Success": img = new Image(Main.class.getResource("img/success.png").toExternalForm());
                                     break;
-                                case "Fail": img = new Image(getClass().getResource("../img/cancel.png").toExternalForm());
+                                case "Fail": img = new Image(Main.class.getResource("img/cancel.png").toExternalForm());
                                     break;
                             }
 

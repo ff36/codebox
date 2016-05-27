@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.*;
 
 /**
  * Class dedicated to handling all functions relating to the remote table pane of the application.
@@ -27,6 +28,8 @@ import java.util.ResourceBundle;
  * Created by tarka on 11/05/2016.
  */
 public class RemoteController implements Initializable {
+
+    private static Logger LOG =  Logger.getLogger("codebox_logger");
 
     @FXML
     private TextField search;
@@ -40,6 +43,16 @@ public class RemoteController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            String log = System.getProperty("user.home") + "/.codebox/logging.log";
+            Handler handler = new FileHandler(log);
+            LOG.addHandler(handler);
+            SimpleFormatter formatter = new SimpleFormatter();
+            handler.setFormatter(formatter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         load();
     }
 
@@ -130,27 +143,31 @@ public class RemoteController implements Initializable {
      * @throws IOException
      */
     @FXML
-    protected void remoteFileSelected() throws IOException {
-        Archive selectedItem = table.getSelectionModel().getSelectedItem();
+    protected void remoteFileSelected() {
+        try {
+            Archive selectedItem = table.getSelectionModel().getSelectedItem();
 
-        Task<Void> task = new Task<Void>() {
-            @Override
-            public Void call() throws InterruptedException {
+            Task<Void> task = new Task<Void>() {
+                @Override
+                public Void call() throws InterruptedException {
 
-                try {
-                    Download download = new S3Util().download(selectedItem.getKey());
-                    Traffic traffic = new Traffic(Traffic.Type.Download, download);
-                    TrafficTasks tasks = TrafficTasks.getInstance();
-                    tasks.addTraffic(traffic);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    try {
+                        Download download = new S3Util().download(selectedItem.getKey());
+                        Traffic traffic = new Traffic(Traffic.Type.Download, download);
+                        TrafficTasks tasks = TrafficTasks.getInstance();
+                        tasks.addTraffic(traffic);
+                    } catch (Exception e) {
+                        LOG.log(Level.SEVERE, "Error downloading", e);
+                    }
+                    return null;
                 }
-                return null;
-            }
-        };
+            };
 
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
+            Thread thread = new Thread(task);
+            thread.setDaemon(true);
+            thread.start();
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Error downloading", e);
+        }
     }
 }
