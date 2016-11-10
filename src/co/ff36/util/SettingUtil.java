@@ -19,6 +19,7 @@ public class SettingUtil {
     public static final String AWS_PUBLIC_KEY = "aws_key";
     public static final String AWS_PRIVATE_KEY = "aws_secret";
     public static final String DOWNLOAD_FILE_KEY = "download_file";
+    public static final String BROWSER_KEY = "browser_address";
 
     /**
      * Load the application settings.
@@ -62,6 +63,7 @@ public class SettingUtil {
         contents.add(AWS_PUBLIC_KEY + "=" + settings.get(AWS_PUBLIC_KEY));
         contents.add(AWS_PRIVATE_KEY + "=" + settings.get(AWS_PRIVATE_KEY));
         contents.add(DOWNLOAD_FILE_KEY + "=" + settings.get(DOWNLOAD_FILE_KEY));
+        contents.add(BROWSER_KEY + "=" + settings.get(BROWSER_KEY));
         try {
             FileUtils.writeLines(file, contents);
         } catch (IOException e) {

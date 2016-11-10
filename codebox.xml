@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="codebox" default="all">
+  
+  
+  <property file="codebox.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/htmlconverter.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.com.amazonaws:aws-java-sdk:1.10.64.classpath">
+    <pathelement location="${basedir}/lib/aws-java-sdk-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-acm-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-api-gateway-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-autoscaling-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cloudformation-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cloudfront-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cloudhsm-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cloudsearch-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cloudtrail-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cloudwatch-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cloudwatchmetrics-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-codecommit-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-codedeploy-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-codepipeline-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cognitoidentity-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-cognitosync-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-config-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-core-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-datapipeline-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-devicefarm-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-directconnect-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-directory-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-dms-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-dynamodb-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-ec2-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-ecr-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-ecs-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-efs-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-elasticache-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-elasticbeanstalk-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-elasticloadbalancing-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-elasticsearch-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-elastictranscoder-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-emr-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-events-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-gamelift-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-glacier-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-iam-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-importexport-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-inspector-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-iot-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-kinesis-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-kms-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-lambda-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-logs-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-machinelearning-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-marketplacecommerceanalytics-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-marketplacemeteringservice-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-opsworks-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-rds-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-redshift-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-route53-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-s3-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-ses-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-simpledb-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-simpleworkflow-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-sns-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-sqs-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-ssm-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-storagegateway-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-sts-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-support-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-swf-libraries-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-waf-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/aws-java-sdk-workspaces-1.10.64.jar"/>
+    <pathelement location="${basedir}/lib/commons-codec-1.6.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.3.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-4.3.6.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.3.3.jar"/>
+    <pathelement location="${basedir}/lib/jackson-annotations-2.5.0.jar"/>
+    <pathelement location="${basedir}/lib/jackson-core-2.5.3.jar"/>
+    <pathelement location="${basedir}/lib/jackson-databind-2.5.3.jar"/>
+    <pathelement location="${basedir}/lib/joda-time-2.8.1.jar"/>
+  </path>
+  
+  <path id="library.commons-io:commons-io:2.4.classpath">
+    <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module codebox -->
+  
+  <dirname property="module.codebox.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.codebox" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.codebox" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.codebox" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.codebox" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="codebox.output.dir" value="${module.codebox.basedir}/out/production/codebox"/>
+  <property name="codebox.testoutput.dir" value="${module.codebox.basedir}/out/test/codebox"/>
+  
+  <path id="codebox.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="codebox.module.production.classpath">
+    <path refid="${module.jdk.classpath.codebox}"/>
+    <path refid="library.com.amazonaws:aws-java-sdk:1.10.64.classpath"/>
+    <path refid="library.commons-io:commons-io:2.4.classpath"/>
+  </path>
+  
+  <path id="codebox.runtime.production.module.classpath">
+    <pathelement location="${codebox.output.dir}"/>
+    <path refid="library.com.amazonaws:aws-java-sdk:1.10.64.classpath"/>
+    <path refid="library.commons-io:commons-io:2.4.classpath"/>
+  </path>
+  
+  <path id="codebox.module.classpath">
+    <path refid="${module.jdk.classpath.codebox}"/>
+    <pathelement location="${codebox.output.dir}"/>
+    <path refid="library.com.amazonaws:aws-java-sdk:1.10.64.classpath"/>
+    <path refid="library.commons-io:commons-io:2.4.classpath"/>
+  </path>
+  
+  <path id="codebox.runtime.module.classpath">
+    <pathelement location="${codebox.testoutput.dir}"/>
+    <pathelement location="${codebox.output.dir}"/>
+    <path refid="library.com.amazonaws:aws-java-sdk:1.10.64.classpath"/>
+    <path refid="library.commons-io:commons-io:2.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.codebox">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.codebox">
+    <patternset refid="excluded.from.module.codebox"/>
+  </patternset>
+  
+  <path id="codebox.module.sourcepath">
+    <dirset dir="${module.codebox.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.codebox" depends="compile.module.codebox.production,compile.module.codebox.tests" description="Compile module codebox"/>
+  
+  <target name="compile.module.codebox.production" description="Compile module codebox; production classes">
+    <mkdir dir="${codebox.output.dir}"/>
+    <javac destdir="${codebox.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.codebox}/javac">
+      <compilerarg line="${compiler.args.codebox}"/>
+      <bootclasspath refid="codebox.module.bootclasspath"/>
+      <classpath refid="codebox.module.production.classpath"/>
+      <src refid="codebox.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.codebox"/>
+    </javac>
+    
+    <copy todir="${codebox.output.dir}">
+      <fileset dir="${module.codebox.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.codebox.tests" depends="compile.module.codebox.production" description="compile module codebox; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.codebox" description="cleanup module">
+    <delete dir="${codebox.output.dir}"/>
+    <delete dir="${codebox.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.codebox, clean.artifact.codebox" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.codebox" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.codebox" value="${basedir}/out/artifacts/Codebox"/>
+    <property name="artifact.output.codebox:jar" value="${basedir}/out/artifacts/codebox_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="artifact.temp.output.JavaFXApp" value="${artifacts.temp.dir}/JavaFXApp.jar"/>
+    <property name="temp.jar.path.codebox.jar" value="${artifacts.temp.dir}/codebox.jar"/>
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath="${jdk.home.1.8}/lib/ant-javafx.jar"/>
+  </target>
+  
+  <target name="clean.artifact.codebox" description="clean Codebox artifact output">
+    <delete dir="${artifact.output.codebox}"/>
+  </target>
+  
+  <target name="artifact.codebox" depends="init.artifacts, compile.module.codebox" description="Build &#39;Codebox&#39; artifact" xmlns:fx="javafx:com.sun.javafx.tools.ant">
+    <mkdir dir="${artifact.output.codebox}"/>
+    <copy todir="${artifact.temp.output.JavaFXApp}">
+      <fileset dir="${codebox.output.dir}"/>
+    </copy>
+    <copy file="${basedir}/lib/aws-java-sdk-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-support-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-support-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-core-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-core-1.10.64.jar"/>
+    <copy file="${basedir}/lib/commons-logging-1.1.3.jar" tofile="${artifact.temp.output.JavaFXApp}/commons-logging-1.1.3.jar"/>
+    <copy file="${basedir}/lib/httpclient-4.3.6.jar" tofile="${artifact.temp.output.JavaFXApp}/httpclient-4.3.6.jar"/>
+    <copy file="${basedir}/lib/httpcore-4.3.3.jar" tofile="${artifact.temp.output.JavaFXApp}/httpcore-4.3.3.jar"/>
+    <copy file="${basedir}/lib/commons-codec-1.6.jar" tofile="${artifact.temp.output.JavaFXApp}/commons-codec-1.6.jar"/>
+    <copy file="${basedir}/lib/jackson-databind-2.5.3.jar" tofile="${artifact.temp.output.JavaFXApp}/jackson-databind-2.5.3.jar"/>
+    <copy file="${basedir}/lib/jackson-annotations-2.5.0.jar" tofile="${artifact.temp.output.JavaFXApp}/jackson-annotations-2.5.0.jar"/>
+    <copy file="${basedir}/lib/jackson-core-2.5.3.jar" tofile="${artifact.temp.output.JavaFXApp}/jackson-core-2.5.3.jar"/>
+    <copy file="${basedir}/lib/joda-time-2.8.1.jar" tofile="${artifact.temp.output.JavaFXApp}/joda-time-2.8.1.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-simpledb-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-simpledb-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-simpleworkflow-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-simpleworkflow-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-storagegateway-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-storagegateway-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-route53-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-route53-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-s3-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-s3-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-kms-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-kms-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-importexport-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-importexport-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-sts-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-sts-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-sqs-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-sqs-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-rds-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-rds-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-redshift-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-redshift-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-elasticbeanstalk-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-elasticbeanstalk-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-glacier-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-glacier-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-sns-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-sns-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-iam-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-iam-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-datapipeline-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-datapipeline-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-elasticloadbalancing-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-elasticloadbalancing-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-emr-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-emr-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-elasticache-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-elasticache-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-elastictranscoder-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-elastictranscoder-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-ec2-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-ec2-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-dynamodb-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-dynamodb-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cloudtrail-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cloudtrail-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cloudwatch-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cloudwatch-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-logs-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-logs-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-events-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-events-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cognitoidentity-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cognitoidentity-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cognitosync-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cognitosync-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-directconnect-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-directconnect-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cloudformation-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cloudformation-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cloudfront-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cloudfront-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-kinesis-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-kinesis-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-opsworks-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-opsworks-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-ses-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-ses-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-autoscaling-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-autoscaling-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cloudsearch-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cloudsearch-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cloudwatchmetrics-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cloudwatchmetrics-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-swf-libraries-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-swf-libraries-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-codedeploy-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-codedeploy-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-codepipeline-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-codepipeline-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-config-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-config-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-lambda-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-lambda-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-ecs-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-ecs-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-ecr-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-ecr-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-cloudhsm-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-cloudhsm-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-ssm-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-ssm-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-workspaces-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-workspaces-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-machinelearning-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-machinelearning-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-directory-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-directory-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-efs-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-efs-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-codecommit-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-codecommit-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-devicefarm-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-devicefarm-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-elasticsearch-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-elasticsearch-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-waf-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-waf-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-marketplacecommerceanalytics-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-marketplacecommerceanalytics-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-inspector-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-inspector-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-iot-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-iot-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-api-gateway-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-api-gateway-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-acm-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-acm-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-gamelift-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-gamelift-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-dms-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-dms-1.10.64.jar"/>
+    <copy file="${basedir}/lib/aws-java-sdk-marketplacemeteringservice-1.10.64.jar" tofile="${artifact.temp.output.JavaFXApp}/aws-java-sdk-marketplacemeteringservice-1.10.64.jar"/>
+    <copy file="${basedir}/lib/commons-io-2.4.jar" tofile="${artifact.temp.output.JavaFXApp}/commons-io-2.4.jar"/>
+    <fx:fileset id="all_but_JavaFXApp" dir="${artifact.temp.output.JavaFXApp}" includes="**/*.jar">
+      <exclude name="JavaFXApp.jar"/>
+    </fx:fileset>
+    <fx:fileset id="all_JavaFXApp" dir="${artifact.temp.output.JavaFXApp}" includes="**/*.jar"/>
+    <fx:application id="JavaFXApp_id" name="Codebox" mainClass="co.ff36.Main"/>
+    <fx:jar destfile="${artifact.temp.output.JavaFXApp}/JavaFXApp.jar">
+      <fx:application refid="JavaFXApp_id"/>
+      <fileset dir="${artifact.temp.output.JavaFXApp}" excludes="**/*.jar"/>
+      <fx:resources>
+        <fx:fileset refid="all_but_JavaFXApp"/>
+      </fx:resources>
+      <manifest/>
+    </fx:jar>
+    <fx:deploy width="1000" height="800" updatemode="background" outdir="${artifact.temp.output.JavaFXApp}/deploy" outfile="JavaFXApp" nativeBundles="dmg" verbose="true">
+      <fx:permissions elevated="true"/>
+      <fx:application refid="JavaFXApp_id"/>
+      <fx:info title="Codebox" vendor="555">
+          <fx:icon href="${basedir}/package/macosx/Codebox.icns"/>
+      </fx:info>
+      <fx:resources>
+        <fx:fileset refid="all_JavaFXApp"/>
+      </fx:resources>
+    </fx:deploy>
+    <property name="artifact.sign.vendor.JavaFXApp" value="CN=555"/>
+    <property name="artifact.sign.alias.JavaFXApp" value="jb"/>
+    <property name="artifact.sign.keystore.JavaFXApp" value="${artifact.temp.output.JavaFXApp}/jb-key.jks"/>
+    <property name="artifact.sign.storepass.JavaFXApp" value="storepass"/>
+    <property name="artifact.sign.keypass.JavaFXApp" value="keypass"/>
+    <genkey dname="${artifact.sign.vendor.JavaFXApp}" alias="${artifact.sign.alias.JavaFXApp}" keystore="${artifact.sign.keystore.JavaFXApp}" storepass="${artifact.sign.storepass.JavaFXApp}" keypass="${artifact.sign.keypass.JavaFXApp}"/>
+    <!--
+    <signjar alias="${artifact.sign.alias.JavaFXApp}" keystore="${artifact.sign.keystore.JavaFXApp}" storepass="${artifact.sign.storepass.JavaFXApp}" keypass="${artifact.sign.keypass.JavaFXApp}">
+      <fileset dir="${artifact.temp.output.JavaFXApp}/deploy">
+        <include name="*.jar"/>
+      </fileset>
+    </signjar>
+    -->
+    <copy todir="${artifact.output.codebox}">
+      <fileset dir="${artifact.temp.output.JavaFXApp}/deploy"/>
+    </copy>
+    <delete includeemptydirs="true">
+      <fileset dir="${artifact.temp.output.JavaFXApp}"/>
+    </delete>
+  </target>
+  
+  <target name="artifact.codebox:jar" depends="init.artifacts, compile.module.codebox" description="Build &#39;codebox:jar&#39; artifact">
+    <property name="artifact.temp.output.codebox:jar" value="${artifacts.temp.dir}/codebox_jar"/>
+    <mkdir dir="${artifact.temp.output.codebox:jar}"/>
+    <jar destfile="${temp.jar.path.codebox.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${codebox.output.dir}"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-support-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-core-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/commons-logging-1.1.3.jar"/>
+      <zipfileset src="${basedir}/lib/httpclient-4.3.6.jar"/>
+      <zipfileset src="${basedir}/lib/httpcore-4.3.3.jar"/>
+      <zipfileset src="${basedir}/lib/commons-codec-1.6.jar"/>
+      <zipfileset src="${basedir}/lib/jackson-databind-2.5.3.jar"/>
+      <zipfileset src="${basedir}/lib/jackson-annotations-2.5.0.jar"/>
+      <zipfileset src="${basedir}/lib/jackson-core-2.5.3.jar"/>
+      <zipfileset src="${basedir}/lib/joda-time-2.8.1.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-simpledb-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-simpleworkflow-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-storagegateway-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-route53-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-s3-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-kms-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-importexport-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-sts-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-sqs-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-rds-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-redshift-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-elasticbeanstalk-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-glacier-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-sns-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-iam-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-datapipeline-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-elasticloadbalancing-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-emr-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-elasticache-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-elastictranscoder-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-ec2-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-dynamodb-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cloudtrail-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cloudwatch-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-logs-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-events-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cognitoidentity-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cognitosync-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-directconnect-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cloudformation-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cloudfront-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-kinesis-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-opsworks-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-ses-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-autoscaling-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cloudsearch-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cloudwatchmetrics-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-swf-libraries-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-codedeploy-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-codepipeline-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-config-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-lambda-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-ecs-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-ecr-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-cloudhsm-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-ssm-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-workspaces-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-machinelearning-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-directory-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-efs-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-codecommit-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-devicefarm-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-elasticsearch-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-waf-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-marketplacecommerceanalytics-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-inspector-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-iot-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-api-gateway-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-acm-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-gamelift-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-dms-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/aws-java-sdk-marketplacemeteringservice-1.10.64.jar"/>
+      <zipfileset src="${basedir}/lib/commons-io-2.4.jar"/>
+    </jar>
+    <copy file="${temp.jar.path.codebox.jar}" tofile="${artifact.temp.output.codebox:jar}/codebox.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.codebox, artifact.codebox:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.codebox:jar}"/>
+    <copy todir="${artifact.output.codebox:jar}">
+      <fileset dir="${artifact.temp.output.codebox:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

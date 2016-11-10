@@ -77,7 +77,7 @@ public class LocalController implements Initializable {
         if (selectedItem.getValue().isDirectory()) {
             Stage stage = new Stage();
             ResourceBundle bundle = ResourceBundle.getBundle("cb-local", Locale.getDefault());
-            URL resource = Main.class.getResource("fxml/archive.fxml");
+            URL resource = Main.class.getResource("fxml/archive_modal.fxml");
             FXMLLoader loader = new FXMLLoader(resource, bundle);
             Parent root = loader.load();
             stage.setScene(new Scene(root, 800, 600));

@@ -4,6 +4,7 @@
     <title>Codebox</title>
     <vendor>555</vendor>
     <description>Sample JavaFX 2.0 application.</description>
+    <icon href="/Users/tarka/Dropbox/Tarka/Projects/codebox/package/macosx/Codebox.icns" />
     <offline-allowed/>
   </information>
   <resources>
@@ -11,7 +12,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXApp.jar" size="17780" download="eager" />
+    <jar href="JavaFXApp.jar" size="52517" download="eager" />
     <jar href="aws-java-sdk-1.10.64.jar" size="2804" download="eager" />
     <jar href="aws-java-sdk-acm-1.10.64.jar" size="117401" download="eager" />
     <jar href="aws-java-sdk-api-gateway-1.10.64.jar" size="1007004" download="eager" />

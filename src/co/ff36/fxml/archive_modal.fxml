@@ -4,45 +4,54 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane minHeight="0.0"
             minWidth="0.0"
             prefHeight="160.0"
             prefWidth="100.0"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.ff36.controller.SettingController">
+            fx:controller="co.ff36.controller.ArchiveController">
     <children>
         <VBox layoutX="266.0" layoutY="94.0" prefHeight="228.0" prefWidth="307.0">
             <children>
-                <TextField fx:id="awsBucket" promptText="%aws_bucket">
+                <TextField fx:id="company" promptText="%archive_prompt_company">
                     <VBox.margin>
                         <Insets top="20.0" />
                     </VBox.margin>
                 </TextField>
-                <TextField fx:id="awsPublicKey" promptText="%aws_public_key">
+                <TextField fx:id="account" promptText="%archive_prompt_account">
                     <VBox.margin>
                         <Insets top="20.0" />
                     </VBox.margin>
                 </TextField>
-                <PasswordField fx:id="awsPrivateKey" promptText="%aws_private_key">
+                <TextField fx:id="order" promptText="%archive_prompt_order">
                     <VBox.margin>
                         <Insets top="20.0" />
                     </VBox.margin>
-                </PasswordField>
-                <TextField fx:id="downloadFile" promptText="%download_file">
+                </TextField>
+                <TextField fx:id="extra" promptText="%archive_prompt_extra">
                     <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="20.0" />
                     </VBox.margin>
                 </TextField>
-                <TextField fx:id="browserAddress" promptText="%browser_address">
+                <CheckBox fx:id="delete" mnemonicParsing="false" text="%delete_directory_check">
                     <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="20.0" />
                     </VBox.margin>
-                </TextField>
-                <Button onAction="#saveSetting" text="%save_setting_button">
+                </CheckBox>
+                <Button onAction="#startArchive" text="%archive_button">
                     <VBox.margin>
                         <Insets top="20.0" />
                     </VBox.margin>
                 </Button>
+                <Label fx:id="toArchive" GridPane.columnIndex="0" GridPane.rowIndex="0" textFill="#333333">
+                    <VBox.margin>
+                        <Insets top="80.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="System Italic" size="10.0" />
+                    </font>
+                </Label>
             </children>
         </VBox>
     </children>

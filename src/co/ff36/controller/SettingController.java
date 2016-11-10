@@ -26,6 +26,8 @@ public class SettingController implements Initializable {
     private PasswordField awsPrivateKey;
     @FXML
     private TextField downloadFile;
+    @FXML
+    private TextField browserAddress;
 
     /**
      * Automatically invoked whenever the remote pane is initialized. This happens after the constructor.
@@ -42,6 +44,7 @@ public class SettingController implements Initializable {
         awsPublicKey.setText(settings.get(SettingUtil.AWS_PUBLIC_KEY));
         awsPrivateKey.setText(settings.get(SettingUtil.AWS_PRIVATE_KEY));
         downloadFile.setText(settings.get(SettingUtil.DOWNLOAD_FILE_KEY));
+        browserAddress.setText(settings.get(SettingUtil.BROWSER_KEY));
     }
 
     /**
@@ -58,7 +61,8 @@ public class SettingController implements Initializable {
         settings.put(SettingUtil.AWS_BUCKET_KEY, awsBucket.getText());
         settings.put(SettingUtil.AWS_PUBLIC_KEY, awsPublicKey.getText());
         settings.put(SettingUtil.AWS_PRIVATE_KEY, awsPrivateKey.getText());
-        settings.put(SettingUtil.DOWNLOAD_FILE_KEY,downloadFile.getText() );
+        settings.put(SettingUtil.DOWNLOAD_FILE_KEY, downloadFile.getText());
+        settings.put(SettingUtil.BROWSER_KEY, browserAddress.getText());
 
         settingUtil.save(settings);
 

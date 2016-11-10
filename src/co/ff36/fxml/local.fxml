@@ -5,23 +5,15 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
-<AnchorPane minHeight="0.0"
-            minWidth="0.0"
-            prefHeight="160.0"
-            prefWidth="100.0"
-            xmlns:fx="http://javafx.com/fxml"
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="co.ff36.controller.LocalController">
     <children>
         <TreeView fx:id="tree"
                   styleClass="local-tree"
-                  layoutX="0.0"
-                  layoutY="0.0"
-                  prefHeight="160.0"
-                  prefWidth="100.0"
-                  AnchorPane.bottomAnchor="0"
-                  AnchorPane.leftAnchor="0"
-                  AnchorPane.rightAnchor="0"
-                  AnchorPane.topAnchor="0">
+                  AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="0.0">
             <contextMenu>
                 <ContextMenu>
                     <items>

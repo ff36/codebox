@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * Class dedicated to handling all functions relating to the about modal of the application.
+ *
  * Created by tarka on 11/05/2016.
  */
 public class AboutController implements Initializable {

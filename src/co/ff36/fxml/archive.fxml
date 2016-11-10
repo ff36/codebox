@@ -2,57 +2,19 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-
-<?import javafx.scene.text.Font?>
-<AnchorPane minHeight="0.0"
-            minWidth="0.0"
-            prefHeight="160.0"
-            prefWidth="100.0"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.ff36.controller.ArchiveController">
+<StackPane xmlns:fx="http://javafx.com/fxml">
     <children>
-        <VBox layoutX="266.0" layoutY="94.0" prefHeight="228.0" prefWidth="307.0">
-            <children>
-                <TextField fx:id="company" promptText="%archive_prompt_company">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </TextField>
-                <TextField fx:id="account" promptText="%archive_prompt_account">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </TextField>
-                <TextField fx:id="order" promptText="%archive_prompt_order">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </TextField>
-                <TextField fx:id="extra" promptText="%archive_prompt_extra">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </TextField>
-                <CheckBox fx:id="delete" mnemonicParsing="false" text="%delete_directory_check">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </CheckBox>
-                <Button onAction="#startArchive" text="%archive_button">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </Button>
-                <Label fx:id="toArchive" GridPane.columnIndex="0" GridPane.rowIndex="0" textFill="#333333">
-                    <VBox.margin>
-                        <Insets top="80.0" />
-                    </VBox.margin>
-                    <font>
-                        <Font name="System Italic" size="10.0" />
-                    </font>
-                </Label>
-            </children>
-        </VBox>
+        <SplitPane dividerPositions="0.8" orientation="VERTICAL" BorderPane.alignment="CENTER">
+            <items>
+                <SplitPane dividerPositions="0.3">
+                    <items>
+                        <fx:include source="local.fxml"/>
+                        <fx:include source="remote.fxml"/>
+                    </items>
+                </SplitPane>
+                <fx:include source="traffic.fxml"/>
+            </items>
+        </SplitPane>
     </children>
-</AnchorPane>
+</StackPane>
+

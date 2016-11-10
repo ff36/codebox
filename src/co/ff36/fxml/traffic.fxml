@@ -3,11 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0"
-            minWidth="0.0"
-            prefHeight="100.0"
-            prefWidth="160.0"
-            styleClass="traffic-bg"
+<AnchorPane styleClass="traffic-bg"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="co.ff36.controller.TrafficController">
         <children>

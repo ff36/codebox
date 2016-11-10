@@ -7,12 +7,6 @@
 <?import javafx.geometry.Insets?>
 <BorderPane fx:controller="co.ff36.controller.MainController"
             id="BorderPane"
-            maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="400.0"
-            prefWidth="400.0"
             xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/8">
     <bottom>
@@ -49,16 +43,29 @@
         </VBox>
     </top>
     <center>
-        <SplitPane dividerPositions="0.8" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-            <items>
-                <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
-                    <items>
-                        <fx:include source="local.fxml"/>
-                        <fx:include source="remote.fxml"/>
-                    </items>
-                </SplitPane>
-                <fx:include source="traffic.fxml"/>
-            </items>
-        </SplitPane>
+            <TabPane side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                <tabs>
+                    <Tab text="%webview_tab_title">
+                        <content>
+                            <fx:include source="webview.fxml"/>
+                        </content>
+                    </Tab>
+                    <Tab text="%archive_tab_title">
+                        <content>
+                            <fx:include source="archive.fxml"/>
+                        </content>
+                    </Tab>
+                    <Tab text="%opportunity_tab_title">
+                        <content>
+                            <Label text="Coming Soon" textFill="#333333"/>
+                        </content>
+                    </Tab>
+                    <Tab text="%schedule_tab_title">
+                        <content>
+                            <Label text="Coming Soon" textFill="#333333"/>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
     </center>
 </BorderPane>

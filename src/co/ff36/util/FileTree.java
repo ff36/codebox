@@ -83,7 +83,8 @@ public class FileTree extends TreeItem<File> {
                 ObservableList<TreeItem<File>> children = FXCollections.observableArrayList();
 
                 for (File childFile : files) {
-                    if (!childFile.getName().startsWith(".")) children.add(new FileTree(childFile));
+                    if (!childFile.getName().startsWith(".")
+                            && !childFile.getName().startsWith("%")) children.add(new FileTree(childFile));
                 }
 
                 return children;
